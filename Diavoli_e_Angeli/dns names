@@ -1,0 +1,39 @@
+
+     g.whatsapp.net
+static.whatsapp.net
+   dit.whatsapp.net
+
+       api.imotech.tech
+       lbs.imolive2.com
+     socks.imolive2.com
+    static-imo.sdonlyn.net
+static-web.imoim.net
+       pay.imolive.tv
+
+mobile-webview.gmail.com
+
+   api.babbel.io
+ about.babbel.com
+images.babbel.com
+sounds.babbel.com
+
+# ----------------------------------------------------------------
+
+ip.src==192.168.31.6 and udp.port==53 and dns.qry.name contains ""
+::
+ - tshark -i enp1s0 -Y 'ip.src==192.168.31.6 and \
+                        udp.port==53 and \
+                        dns.qry.name contains "whatsapp"'
+                        
+ - tshark -i enp1s0 -Y 'ip.src==192.168.31.6 and \
+                        udp.port==53 and \
+                        dns.qry.name contains "gmail"'
+
+ - tshark -i enp1s0 -Y 'ip.src==192.168.31.6 and \
+                        udp.port==53 and \
+                        dns.qry.name contains "imo"'
+
+# ----------------------------------------------------------------
+
+tshark -i enp1s0 -Y 'ip.src==192.168.31.6 and udp.port==53' \
+                 -T fields -e dns.qry.name

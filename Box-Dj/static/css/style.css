@@ -1,0 +1,123 @@
+
+body { background-color: lightyellow ; padding: 20px ; }
+
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+
+textarea {
+    
+    padding-top:    20px ;
+    padding-left:   20px ;
+    padding-bottom: 20px ;
+    
+    resize: none ;
+    font-size: 24px ;
+}
+
+#client {
+
+    position: absolute ; top: 0 ; left: 0px ;
+    
+    width:  100%  ;
+    height: 80px  ;
+
+    border: solid 1px darkblue ;
+    
+    background-color: white ;
+    font-size: 24px ;
+}
+
+#server {
+    
+    position: fixed ;
+    
+    margin: 0 ; left: 0 ; bottom : 0 ;
+    
+    width:  100%  ;
+    height: 115px ;
+    
+    border: solid 1px darkred ;
+    
+    background-color: rgb(214, 232, 235) ; color: darkblue ;
+}
+
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+
+img       { opacity: 0.3 ; position: absolute ; z-index: 1 ; }
+img:hover { opacity: 1   ; }
+
+#none { position: absolute ; top    : 5px ; right: 20px ; height: 100px ; }
+#home { position: fixed    ; bottom : 5px ; right:  0px ; height: 150px ; }
+
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+
+table {
+
+    border:    solid darkblue 1px  ;
+    border-radius:           80px  ;
+    margin-left: calc(50% - 240px) ;
+    
+    width:  480px;
+    height: 480px;
+    
+    padding: 10px ;
+    
+    background-color: white ;
+}
+
+.space { height: 30px ; }
+
+tr     { width: calc(100% / 4) ; height: calc(100% / 4) ; }
+td     { width: calc(100% / 4) ; height: calc(100% / 4) ; }
+button { width: 100%           ; height: 100%           ;
+
+    font-family:  'Courier New', monospace ;
+    
+    font-size:    60px ;
+    font-weight:  bold ;
+    color:        blue ;
+    
+    border: solid darkblue 1px ;
+    border-radius: 50% ;
+    
+    opacity: 0.5 ;
+}
+
+/* ------------------------------------------------------------ */
+/* ------------------------------------------------------------ */
+
+.a { background-color: lightgray ; color: darkred ; }
+.b { background-color:      gray ; color: yellow  ; }
+.c { background-color:     black ; color: white   ; }
+
+.a:hover , .a:focus { background-color: darkred ; color: lightgray ; }
+.b:hover , .b:focus { background-color: yellow  ; color:      gray ; }
+.c:hover , .c:focus { background-color: white   ; color:     black ; }
+
+/* ------------------------------------------------------------ */
+
+.d { background-color: lightblue ; color: darkred ; }
+.e { background-color:      blue ; color: yellow  ; }
+.f { background-color:  darkblue ; color: white   ; }
+
+.d:hover , .d:focus { background-color: darkred ; color: lightblue ; }
+.e:hover , .e:focus { background-color: yellow  ; color:      blue ; }
+.f:hover , .f:focus { background-color: white   ; color:  darkblue ; }
+
+/* ------------------------------------------------------------ */
+
+.g { background-color: lightgreen ; color: darkred ; }
+.h { background-color:      green ; color: yellow  ; }
+.i { background-color:  darkgreen ; color: white   ; }
+
+.g:hover , .g:focus { background-color: darkred ; color: lightgreen ; }
+.h:hover , .h:focus { background-color: yellow  ; color:      green ; }
+.i:hover , .i:focus { background-color: white   ; color:  darkgreen ; }
+
+/* ------------------------------------------------------------ */
+
+.z                  { background-color: violet ; color: black ; }
+.z:hover , .z:focus { background-color:  black ; color: green ; }
+

@@ -1,0 +1,78 @@
+
+EXAMPLES:
+
+   1. tshark -i enp1s0 -Y 'ip.src eq 192.168.31.6 and tcp or ( udp and udp.port ne 53 )' \
+                       -T fields -e ip.proto
+                       
+   2. tshark -i enp1s0 -Y '( ip.src eq 192.168.31.6 ) and ( tcp.port eq 80 or tcp.port eq 443 ) or ( udp and udp.port ne 53 )' \
+                       -O http
+
+# ----------------------------------------------------------------BLOCK TO ANDROID
+
+iptables negation with (!)
+
+echo 'nip=$1 ; sudo iptables  -I FORWARD  -i enp1s0  -o  wlan0  -s 192.168.31.$nip  -j DROP  ; \
+      nip=$1 ; sudo iptables  -I FORWARD  -i  wlan0  -o enp1s0  -d 192.168.31.$nip  -j DROP  ; \
+      \
+      sudo iptables -L -v'  >  android_nonline.sh && chmod 755 android_nonline.sh && \
+      \
+      sudo ln -sf /home/kaumi/android_nonline.sh /usr/bin/android_nonline
+
+# ----------------------------------------------------------------SEE UBUNTU
+
+# UBUNTU use 80 and 53 for apt :: bash Shark/watch_wlan0.sh 1 8 (+) for i in `seq 10`; do sudo apt update; done
+
+# ----------------------------------------------------------------WATCHING LAN
+
+NO WROK PC ONLINE with -O http , STEPS:
+
+  1. tshark -i enp1s0 -Y '( ip.src eq 192.168.31.7 )' -T fields -e ip.dst -e ip.proto     <-- doesn't work
+  2. tshark -i enp1s0 -Y '( ip.src eq 192.168.31.7 ) and ( ip.proto==17 or ip.proto==6 )' <-- doesn't work
+  
+  3. tshark -i enp1s0 -Y '( ip.src eq 192.168.31.12 ) and ( ip.proto==17 or ( ip.proto==6 and ( not tcp.dstport==22 ) ) )' <-- doesn't works
+  
+  4. Yinput="( ip.src eq 192.168.31.12 ) and ( ip.proto==17 or ( ip.proto==6 and \
+             ( not tcp.dstport==22 ) and tcp.dstport==80 ) )" ;
+     \
+     tshark -i enp1s0 -Y "$Yinput" <-- doesn't works
+     
+  5. it implies, in LAN ip src homePC with requests ( 80 and 22 and Sharingang ) with dst DIFFERENT to ROUTER remaining in fritz !!
+  
+# ----------------------------------------------------------------WATCHING workPC
+
+Wmac='04:6c:59:f6:a9:c3' ; Yinput="( ip.proto==6 )" ;
+        \
+        tshark -i wlan0 -Y "$Yinput" -O http | grep $Wmac <- doesn't work
+        
+Yinput="( ip.proto==6 )" ;
+        \
+        tshark -i wlan0 -Y "$Yinput" -O http <-- works but not very clear
+        
+tshark -i enp1s0 -Y '( ip.src eq 192.168.31.7 )' -O http <-- works + well
+
+NOTE:
+
+   - Htshark -i enp1s0 -Y '( ip.src eq 192.168.31.7 )' -O http.. ( TAB ) implies: http   http2  http3  
+   
+   - WHAT ARE THEY ?
+     HTTP/2 and HTTP/3 accelerate page load and are free for all Cloudflare plans.
+     HTTP/2 is enabled by default and requires an SSL certificate at Cloudflare’s edge network.
+     Configure HTTP/2 and HTTP/3 via the Cloudflare Network app. Domains on Free plans cannot disable HTTP/2.
+
+     IN SHORT:
+       - A browser and web server automatically negotiate the highest protocol available.
+         Thus, HTTP/3 takes precedence over HTTP/2.
+         Cloudflare only uses HTTP/1.x between the origin web server and Cloudflare.
+         To determine the protocol used for your connection,
+         enter example.com/cdn-cgi/trace from a web browser or client and replace example.com with your domain name.
+         Several lines of data are returned. If http=h2 appears in the results, the connection occurred over HTTP/2.
+         Other possible values are http=http2+quic/99 for HTTP/3, and http=http/1.x for HTTP/1.x.
+
+FOR HTTPS (CRYPTED FRAME):
+
+   - tshark -i enp1s0 -Px -Y '( ip.src eq 192.168.31.7 )' -O http
+   
+TRUST ?
+
+   -  https://url-decode.com/tool/ip-to-hostname
+

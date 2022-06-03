@@ -1,0 +1,33 @@
+web_client -> Starting Sharingan -> 5 -> with 192.168.31.7
+one      -> 2 -> click
+mousepad -> 2 -> click -> test
+
+all text  will be copied from Client -> 1
+new line  will be copied from Client -> 2
+
+new line1
+new line2
+new line3 will be copied -> 1
+
+select all       lines , will be copied from Server -> 9
+select one       line  , will be copied from Server -> 8
+select two/three lines , will be copied from Server -> 7,7
+
+new line for terminal -> 3
+select line -> 8
+delete from one
+ls -> 2
+enter  from one
+
+right mouse will be pressed -> 4
+
+In this tutorial I used all these features in the same device.
+You can use any other smartphones/tablets you have.
+It is a responsive web site. 
+
+In this web site also the simple number pressed on kayboard work ( no mouse ) .
+Example for all text will be copied -> 1
+Example for Starting Sharingan -> 5
+
+ffmpeg -ss 0 -t  10 -i input1.mp4 -vf "fps=25,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output1.gif
+ffmpeg -ss 0 -t 458 -i input2.mp4 -vf  "fps=5,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output2.gif

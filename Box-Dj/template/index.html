@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+      <meta charset="utf-8">
+      
+      <link rel=icon href='/static/icon/clown.png' type='image/icon type' >
+      
+      <link rel=stylesheet type=text/css href='/static/css/style.css' media=screen />
+      
+      <a href='/static/doc/doc.pdf' target='_blank' ><img src='/static/img/phoneix.gif' id=none ></a>
+      <a href='/'                   target='_blank' ><img src='/static/img/drone.gif'   id=home ></a>
+      
+      <audio src='/static/sound/click.mp3' id=click ></audio>
+      
+      <title>Box-DJ</title>
+      
+      <script type="text/javascript">
+          function loading ()
+          {
+              document.getElementById ( 'client' ).value  =  '' ;
+              document.getElementById ( 'server' ).value  =  '' ;
+              document.getElementById ( 'click'  ).volume = 0.1 ;
+          }
+          
+          function pressing ( number )
+          {
+              var scrollPositionY = window.pageYOffset ;
+              
+              document.getElementById ( 'client' ).focus  () ;
+              document.getElementById ( 'client' ).select () ;
+              
+              window.scrollTo ( 0 , scrollPositionY ) ;
+              
+              if ( ! ( number >= 1 && number <= 18 ) ) return 0 ;
+
+              document.title = 'Box-DJ-' + number ;
+              
+              document.getElementById ( 'click' ).pause() ;
+              document.getElementById ( 'click' ).currentTime = 0 ;
+              document.getElementById ( 'click' ).play () ;
+              
+              var xhttp = new XMLHttpRequest () ;
+              
+              xhttp.onload = () =>
+              {
+                  if ( xhttp.status >= 200 && xhttp.status < 300 )
+                  {
+                      // parse JSON : JSON.parse ( xhttp.responseText ) ;
+                      
+                      document.getElementById ( 'server' ).value = xhttp.responseText ;
+                  }
+              };
+              
+              xhttp.open ( 'POST' , 'numbers/' ) ;
+              
+              xhttp.setRequestHeader ( "Content-Type", "application/json" ) ;
+              
+              xhttp.send ( JSON.stringify ( { "number": number ,
+                                               "input": document.getElementById ( 'client' ).value }
+              ) ) ;
+          }
+      </script>
+
+  </head>
+  
+  <body onload="loading()" >
+
+    <textarea id=client placeholder="From Client" ></textarea>
+    
+    <div class=space ></div><div class=space ></div><div class=space ></div>
+    <div class=space ></div><div class=space ></div><div class=space ></div>
+    
+    <table>
+        <tr>
+            <td><button class=a onclick='pressing(1)'  >PA</button></td>
+            <td><button class=b onclick='pressing(2)'  >PL</button></td>
+            <td><button class=c onclick='pressing(3)'  >PS</button></td>
+            <td><button class=z onclick='pressing(14)' >M2</button></td>
+        </tr>
+
+        <tr>
+            <td><button class=d onclick='pressing(4)'  >MR</button></td>
+            <td><button class=e onclick='pressing(5)'  >SH</button></td>
+            <td><button class=f onclick='pressing(6)'  >VB</button></td>
+            <td><button class=z onclick='pressing(15)' >DL</button></td>
+        </tr>
+
+        <tr>
+            <td><button class=g onclick='pressing(7)'  >SU</button></td>
+            <td><button class=h onclick='pressing(8)'  >M3</button></td>
+            <td><button class=i onclick='pressing(9)'  >SA</button></td>
+            <td><button class=z onclick='pressing(16)' >CN</button></td>
+        </tr> 
+        
+        <tr>
+            <td><button class=z onclick='pressing(10)' >SA</button></td>
+            <td><button class=z onclick='pressing(11)' >CP</button></td>
+            <td><button class=z onclick='pressing(12)' >PL</button></td>
+            <td><button class=z onclick='pressing(13)' >MM</button></td>
+        </tr>
+    </table>
+    
+    <div class=space ></div><div class=space ></div>
+    
+    <div class=space ></div><div class=space ></div><div class=space ></div>
+    <div class=space ></div><div class=space ></div><div class=space ></div>
+    
+    <textarea id=server placeholder="From Server" disabled ></textarea>
+
+  </body>
+</html>

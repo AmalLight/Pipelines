@@ -1,0 +1,6 @@
+
+sudo apt install ntp
+
+sudo dpkg-reconfigure tzdata # Europe/Rome
+
+sudo apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false update

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Box-Dj
+Exec=xfce4-terminal -T Box-Dj --working-directory='/home/kaumi/Box-Dj' -e 'sh -c "sleep 8 && /usr/bin/python3 app.py"'
+Icon=/home/kaumi/Box-Dj/static/icon/clown.png
+StartupNotify=false

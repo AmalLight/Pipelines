@@ -1,0 +1,24 @@
+node
+{
+    stage ( 'Preparation -> git clone' )
+    {
+        git 'https://github.com/TrainingByPackt/Beginning-Jenkins.git'
+    }
+    
+    dir ( 'Lesson5' )
+    {
+        printMessage ( 'Running Pipeline' )
+        
+        stage ( 'Testing -> py fileX.py' )
+        {
+            sh 'python2.7 test_functions.py'
+        }
+        
+        printMessage ( 'Pipeline Complete' )
+    }
+}
+
+def printMessage ( message )
+{
+    echo "${message}"
+}
